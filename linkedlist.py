@@ -28,8 +28,7 @@ class LinkedList():
             return
         while node.next:
             node = node.next
-        new_node = Node(data)
-        node.next = new_node
+        node.next = Node(data)
 
     def remove_from_beginning(self):
         node = self.head
@@ -40,10 +39,8 @@ class LinkedList():
 
     def size(self):
         node = self.head
-        if not node:
-            return 0
-        size = 1
-        while node.next:
+        size = 0
+        while node:
             size += 1
             node = node.next
         return size
@@ -91,19 +88,53 @@ class LinkedList():
             itr += 1
         node.next = node.next.next
 
+    ## Exercise problem
+    def insert_after_value(self,value,data):
+        node = self.head
+        while node:
+            if node.data == value:
+                break
+            node = node.next
+        node.next = Node(data,node.next)
+
+    def remove_by_value(self, data):
+        node = self.head
+        if node.data == data:
+            self.remove_from_beginning()
+            return
+        while node.next:
+            if node.next.data == data:
+                break
+            node = node.next
+        if node.next:
+            node.next = node.next.next
+
 if __name__ == '__main__':
     ll = LinkedList()
-    ll.insert_at_end(34)
-    ll.insert_at_beginning(2)
-    ll.insert_at_beginning(5)
-    ll.insert_at_end(334)
+    ll.inser_in_batch(["banana","mango","grapes","orange"])
     ll.print()
-    ll.inser_in_batch([12,334,456,324,213,56,67,])
+    ll.insert_after_value("mango","apple") # insert apple after mango
     ll.print()
-    print(ll.size())
-    # ll.remove_from_beginning()
-    # ll.insert_at_index(10,99)
+    ll.remove_by_value("orange") # remove orange from linked list
+    ll.print()
+    ll.remove_by_value("figs")
+    ll.print()
+    ll.remove_by_value("banana")
+    ll.remove_by_value("mango")
+    ll.remove_by_value("apple")
+    ll.remove_by_value("grapes")
+    ll.print()
+    # ll.insert_at_end(34)
+    # ll.insert_at_beginning(2)
+    # ll.insert_at_beginning(5)
+    # ll.insert_at_end(334)
+    # ll.print()
+    # ll.inser_in_batch([12,334,456,324,213,56,67,])
+    # ll.print()
     # print(ll.size())
-    # ll.remove_from_end()
-    ll.remove_from_index(5)
-    ll.print()
+    # # ll.remove_from_beginning()
+    # # ll.insert_at_index(10,99)
+    # # print(ll.size())
+    # # ll.remove_from_end()
+    # ll.remove_from_index(5)
+    # ll.print()

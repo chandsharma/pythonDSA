@@ -38,6 +38,23 @@ class LinkedList():
             return
         self.head = node.next
 
+    def size(self):
+        node = self.head
+        if not node:
+            return 0
+        size = 1
+        while node.next:
+            size += 1
+            node = node.next
+        return size
+    
+    def remove_from_end(self):
+        node = self.head
+        if self.size <= 1:
+            self.remove_from_beginning()
+            return
+        
+
 if __name__ == '__main__':
     ll = LinkedList()
     ll.insert_at_end(34)
@@ -45,5 +62,7 @@ if __name__ == '__main__':
     ll.insert_at_beginning(5)
     ll.insert_at_end(334)
     ll.print()
+    print(ll.size())
     ll.remove_from_beginning()
+    print(ll.size())
     ll.print()

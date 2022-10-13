@@ -18,6 +18,9 @@ class Stack():
     def size(self):
         return len(self.stack)
 
+    def is_empty(self):
+        return len(self.stack) == 0
+
 if __name__ == '__main__':
     stack = Stack()
     stack.push('first')

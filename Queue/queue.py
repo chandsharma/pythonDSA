@@ -18,6 +18,9 @@ class Queue():
     def is_empty(self):
         return self.size() == 0
 
+    def front(self):
+        return self.queue[-1]
+
 if __name__ == '__main__':
     q = Queue()
 

@@ -10,7 +10,7 @@ class Tree():
         self.children.append(child)
         return child
 
-    def print_tree(self,criteria, indentation=0):
+    def print_tree(self,criteria, level,current_level=0,indentation=0):
         if criteria == "both":
             to_print = self.name+" ({}) ".format(self.designation)
         elif criteria == "designation":
@@ -18,8 +18,10 @@ class Tree():
         else:
             to_print = self.name
         print(" "*indentation*2,to_print)
+        if level == current_level:
+            return
         for child in self.children:
-            child.print_tree(criteria,indentation+2)
+            child.print_tree(criteria,level,current_level+1,indentation+2)
 
 
 def build_management_tree():
@@ -40,6 +42,8 @@ def build_management_tree():
 
 if __name__ == '__main__':
     root_node = build_management_tree()
-    root_node.print_tree("name")
-    root_node.print_tree("designation")
-    root_node.print_tree("both")
+    root_node.print_tree("name",1)
+    print("\n\n")
+    root_node.print_tree("designation",2)
+    print("\n\n")
+    root_node.print_tree("both",0)

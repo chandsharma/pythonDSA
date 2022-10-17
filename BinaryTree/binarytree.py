@@ -53,6 +53,32 @@ class BinaryTree():
             return self.right.max()
         return self.data
 
+    def sum(self):
+        sum = self.data
+        if self.left:
+            sum += self.left.sum()
+        if self.right:
+            sum += self.right.sum()
+        return sum
+
+    def post_order_traversal(self):
+        elements = []
+        if self.left:
+            elements += self.left.post_order_traversal()
+        if self.right:
+            elements += self.right.post_order_traversal()
+        elements.append(self.data)
+        return elements
+
+    def pre_order_traversal(self):
+        elements = []
+        elements.append(self.data)
+        if self.left:
+            elements += self.left.pre_order_traversal()
+        if self.right:
+            elements += self.right.pre_order_traversal()
+        return elements
+
 def build_binary_tree(list_of_elements):
     root = BinaryTree(list_of_elements[0])
     for element in list_of_elements[1:]:
@@ -60,15 +86,17 @@ def build_binary_tree(list_of_elements):
     return root
 
 if __name__ == "__main__":
-    binary_tree = build_binary_tree([17,4,1,20,9,23,18,34,10])
+    binary_tree = build_binary_tree([15,12,7,14,27,20,23,88])
     print(binary_tree.in_order_traversal())
-    print(binary_tree.search(17))
-    print(binary_tree.search(9))
+    print(binary_tree.post_order_traversal())
+    print(binary_tree.pre_order_traversal())
     print(binary_tree.search(19))
     print(binary_tree.min())
     print(binary_tree.max())
+    print(binary_tree.sum())
 
     binary_tree = build_binary_tree(["India","Pakistan","Germany","USA","China","India","UK"])
     print(binary_tree.in_order_traversal())
     print(binary_tree.search("Germany"))
     print(binary_tree.search("Nepal"))
+    print(binary_tree.sum())

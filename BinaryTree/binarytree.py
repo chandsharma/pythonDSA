@@ -43,6 +43,16 @@ class BinaryTree():
             else:
                 return False
 
+    def min(self):
+        if self.left:
+            return self.left.min()
+        return self.data
+
+    def max(self):
+        if self.right:
+            return self.right.max()
+        return self.data
+
 def build_binary_tree(list_of_elements):
     root = BinaryTree(list_of_elements[0])
     for element in list_of_elements[1:]:
@@ -50,11 +60,13 @@ def build_binary_tree(list_of_elements):
     return root
 
 if __name__ == "__main__":
-    binary_tree = build_binary_tree([17,4,1,20,9,23,18,34])
+    binary_tree = build_binary_tree([17,4,1,20,9,23,18,34,10])
     print(binary_tree.in_order_traversal())
     print(binary_tree.search(17))
     print(binary_tree.search(9))
     print(binary_tree.search(19))
+    print(binary_tree.min())
+    print(binary_tree.max())
 
     binary_tree = build_binary_tree(["India","Pakistan","Germany","USA","China","India","UK"])
     print(binary_tree.in_order_traversal())

@@ -70,9 +70,9 @@ class BinaryTree():
             elif self.left is None:
                 return self.right
             else:
-                min_val = self.right.min()
-                self.data = min_val
-                self.right = self.right.delete(min_val)
+                max_val = self.left.max()
+                self.data = max_val
+                self.left = self.left.delete(max_val)
                 return self
 
         elif data < self.data and self.left:

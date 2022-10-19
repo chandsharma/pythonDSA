@@ -61,6 +61,25 @@ class BinaryTree():
             sum += self.right.sum()
         return sum
 
+    def delete(self,data):
+        if data == self.data:
+            if self.left is None and self.right is None:
+                return None
+            elif self.right is None:
+                return self.left
+            elif self.left is None:
+                return self.right
+            else:
+                min_val = self.right.min()
+                self.data = min_val
+                self.right = self.right.delete(min_val)
+                return self
+
+        elif data < self.data and self.left:
+            self.left = self.left.delete(data)
+        elif data > self.data and self.right:
+            self.right = self.right.delete(data)
+
     def post_order_traversal(self):
         elements = []
         if self.left:
@@ -86,7 +105,8 @@ def build_binary_tree(list_of_elements):
     return root
 
 if __name__ == "__main__":
-    binary_tree = build_binary_tree([15,12,7,14,27,20,23,88])
+    binary_tree = build_binary_tree([17,4,1,20,9,23,18,34])
+    binary_tree.delete(20)
     print(binary_tree.in_order_traversal())
     print(binary_tree.post_order_traversal())
     print(binary_tree.pre_order_traversal())
